@@ -1,0 +1,42 @@
+<div class="form-container">
+  <h2>Register</h2>
+
+  <form  (ngSubmit)="register()">
+    <label>Customer Name:</label>
+    <input type="text" [(ngModel)]="customerName" name="customerName" required />
+
+    <label>Email:</label>
+    <input type="email" [(ngModel)]="email" name="email" required />
+
+    <label>Mobile Number:</label>
+    <input type="text" [(ngModel)]="mobile" name="mobile" required />
+
+    <label>Address:</label>
+    <textarea [(ngModel)]="address" name="address"></textarea>
+
+    <label>User ID:</label>
+    <input type="text" [(ngModel)]="userId" name="userId" required />
+
+    <label>Password:</label>
+    <input type="password" [(ngModel)]="password" name="password" required />
+
+    <label>Confirm Password:</label>
+    <input
+      type="password"
+      [(ngModel)]="confirmPassword"
+      name="confirmPassword"
+      required
+    />
+
+  
+
+    <div class="buttons">
+      <button class="btn" type="submit">Register</button>
+      <button class="btn secondary" type="button" (click)="resetForm()">Reset</button>
+    </div>
+  </form>
+
+  <div *ngIf="successMessage" class="success">
+    {{ successMessage }}
+  </div>
+</div>

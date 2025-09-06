@@ -1,0 +1,38 @@
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .75rem 1rem;
+  background: #198754;
+  color: #fff;
+}
+
+.logout {
+  background: #dc3545;
+  color: #fff;
+  border: none;
+  padding: .5rem .9rem;
+  border-radius: .5rem;
+  cursor: pointer;
+}
+
+.menu {
+  display: flex;
+  gap: .75rem;
+  padding: .75rem 1rem;
+  background: #f5f7fb;
+  border-bottom: 1px solid #e6e9ef;
+}
+
+.menu a {
+  text-decoration: none;
+  padding: .4rem .8rem;
+  border-radius: .5rem;
+  color: #146c43;
+  border: 1px solid transparent;
+}
+
+.menu a:hover { background: #e9f7ef; border-color: #cfead9; }
+.menu a.active { background: #198754; color: #fff; }
+
+.content { padding: 1rem; }

@@ -1,0 +1,45 @@
+<div class="login-container">
+  <div class="login-wrap">
+    <h2>Login</h2>
+
+    <div class="form-row">
+      <label>
+        Username
+        <input 
+          type="text" 
+          placeholder="Enter your username (optional)" 
+        />
+      </label>
+    </div>
+
+    <div class="form-row">
+      <label>
+        Password
+        <input 
+          type="password" 
+          placeholder="Enter your password (optional)" 
+        />
+      </label>
+    </div>
+
+    <div class="form-row">
+      <label>
+        Role
+        <select>
+          <option value="customer">Customer</option>
+          <option value="officer">Officer</option>
+        </select>
+      </label>
+    </div>
+
+ <div class="actions">
+  <a routerLink="/customer-home" class="btn">Login as Customer</a>
+  <a routerLink="/officer-home" class="btn secondary">Login as Officer</a>
+</div>
+
+<div class="back">
+  <a routerLink="/home">← Back to Home</a>
+</div>
+
+  </div>
+</div>
