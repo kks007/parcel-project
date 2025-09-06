@@ -1,1 +1,43 @@
-<p>booking-customer works!</p>
+<div class="container">
+  <h1>Book a Parcel</h1>
+
+  <form (ngSubmit)="submitBooking()" #bookingForm="ngForm">
+    <div class="form-group">
+      <label>Sender Name</label>
+      <input type="text" [(ngModel)]="booking.senderName" name="senderName" required />
+    </div>
+
+    <div class="form-group">
+      <label>Receiver Name</label>
+      <input type="text" [(ngModel)]="booking.receiverName" name="receiverName" required />
+    </div>
+
+    <div class="form-group">
+      <label>Pickup Address</label>
+      <textarea [(ngModel)]="booking.pickupAddress" name="pickupAddress" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Drop Address</label>
+      <textarea [(ngModel)]="booking.dropAddress" name="dropAddress" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Parcel Weight (kg)</label>
+      <input type="number" [(ngModel)]="booking.parcelWeight" name="parcelWeight" required />
+    </div>
+
+    <div class="form-group">
+      <label>Parcel Type</label>
+      <select [(ngModel)]="booking.parcelType" name="parcelType">
+        <option value="Document">Document</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Clothes">Clothes</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn">Submit Booking</button>
+    <a routerLink="/customer-home" class="btn secondary">Cancel</a>
+  </form>
+</div>

@@ -1,0 +1,37 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 24px;
+  background: #28a745;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  border-radius: 0 0 10px 10px;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+}
+
+.links a {
+  margin-left: 16px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.links a:hover {
+  opacity: 0.8;
+}
+
+.logout {
+  background: #fff;
+  color: #28a745;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: bold;
+}
