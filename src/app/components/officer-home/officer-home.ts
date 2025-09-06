@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
+import { NavbarOfficer } from '../../navbar-officer/navbar-officer';
 
 @Component({
   selector: 'app-officer-home',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, NavbarOfficer],
   templateUrl: './officer-home.html',
   styleUrls: ['./officer-home.css']
 })

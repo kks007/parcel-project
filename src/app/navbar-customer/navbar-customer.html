@@ -1,11 +1,7 @@
-<nav class="navbar">
-  <a routerLink="/customer-home" class="logo">ParcelX</a>
-  <div class="links">
-    <a routerLink="/booking-customer">Book Parcel</a>
-    <a routerLink="/booking-history-customer">History</a>
-    <a routerLink="/tracking-customer">Tracking</a>
-    <a routerLink="/delivery-status">Delivery Status</a>
-    <a routerLink="/invoice">Invoice</a>
-    <a routerLink="/login" class="logout">Logout</a>
-  </div>
+<nav class="menu">
+  <a routerLink="/customer-home" routerLinkActive="active">Customer Home</a>
+  <a routerLink="/booking-customer" routerLinkActive="active">Booking Service</a>
+  <a routerLink="/tracking-customer" routerLinkActive="active">Tracking</a>
+  <a routerLink="/booking-history-customer" routerLinkActive="active">Previous Booking</a>
+  <a href="mailto:support@parcel.example" target="_blank" rel="noopener">Contact Support</a>
 </nav>
