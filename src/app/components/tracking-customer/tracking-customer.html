@@ -1,1 +1,20 @@
-<p>tracking-customer works!</p>
+<app-navbar-customer></app-navbar-customer>
+
+<div class="page-content">
+  <h1>Track Your Parcel</h1>
+
+  <form (ngSubmit)="trackParcel()" class="tracking-form">
+    <input
+      type="text"
+      [(ngModel)]="trackingId"
+      name="trackingId"
+      placeholder="Enter Tracking ID"
+      required
+    />
+    <button type="submit">Track</button>
+  </form>
+
+  <div *ngIf="trackingResult" class="result">
+    {{ trackingResult }}
+  </div>
+</div>

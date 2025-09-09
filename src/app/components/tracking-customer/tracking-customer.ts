@@ -1,11 +1,24 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { NavbarCustomer } from '../../navbar-customer/navbar-customer';
 
 @Component({
   selector: 'app-tracking-customer',
-  imports: [],
+  standalone: true,
+  imports: [FormsModule, NavbarCustomer],
   templateUrl: './tracking-customer.html',
-  styleUrl: './tracking-customer.css'
+  styleUrls: ['./tracking-customer.css']
 })
 export class TrackingCustomer {
+  trackingId: string = '';
+  trackingResult: string | null = null;
 
+  trackParcel() {
+    if (this.trackingId.trim()) {
+      // Dummy result for now
+      this.trackingResult = `Parcel ${this.trackingId} is currently in transit.`;
+    } else {
+      this.trackingResult = null;
+    }
+  }
 }

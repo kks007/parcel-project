@@ -1,0 +1,46 @@
+.page-content {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #28a745;
+}
+
+.tracking-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tracking-form input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.tracking-form button {
+  padding: 10px 16px;
+  background-color: #28a745;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.tracking-form button:hover {
+  background-color: #1e7e34;
+}
+
+.result {
+  margin-top: 15px;
+  padding: 12px;
+  background: #eaf8ef;
+  border: 1px solid #b7e2c2;
+  border-radius: 6px;
+  color: #1e7e34;
+}
