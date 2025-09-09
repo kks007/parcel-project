@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { NavbarCustomer } from '../../navbar-customer/navbar-customer';
 
 @Component({
   selector: 'app-booking-customer',
   standalone: true,
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, NavbarCustomer],
   templateUrl: './booking-customer.html',
   styleUrls: ['./booking-customer.css']
 })
