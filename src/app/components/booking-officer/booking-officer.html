@@ -1,1 +1,41 @@
-<p>booking-officer works!</p>
+<app-navbar-officer></app-navbar-officer>
+
+<div class="page-content">
+  <h1>Booking Requests</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Booking ID</th>
+        <th>Customer</th>
+        <th>Parcel</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let request of bookingRequests">
+        <td>{{ request.id }}</td>
+        <td>{{ request.customer }}</td>
+        <td>{{ request.parcel }}</td>
+        <td>{{ request.status }}</td>
+        <td>
+          <button
+            class="approve"
+            (click)="updateStatus(request.id, 'Approved')"
+            [disabled]="request.status !== 'Pending'"
+          >
+            Approve
+          </button>
+          <button
+            class="deny"
+            (click)="updateStatus(request.id, 'Denied')"
+            [disabled]="request.status !== 'Pending'"
+          >
+            Deny
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
