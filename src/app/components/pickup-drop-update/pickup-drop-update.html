@@ -1,1 +1,30 @@
-<p>pickup-drop-update works!</p>
+<app-navbar-officer></app-navbar-officer>
+
+<div class="page-content">
+  <h1>Update Pickup / Drop Status</h1>
+
+  <form (ngSubmit)="updateStatus()" class="update-form">
+    <input
+      type="text"
+      [(ngModel)]="bookingId"
+      name="bookingId"
+      placeholder="Enter Booking ID"
+      required
+    />
+
+    <select [(ngModel)]="status" name="status" required>
+      <option value="" disabled selected>Select Status</option>
+      <option value="Pending Pickup">Pending Pickup</option>
+      <option value="Picked Up">Picked Up</option>
+      <option value="In Transit">In Transit</option>
+      <option value="Out for Delivery">Out for Delivery</option>
+      <option value="Delivered">Delivered</option>
+    </select>
+
+    <button type="submit">Update</button>
+  </form>
+
+  <div *ngIf="updateMessage" class="result">
+    {{ updateMessage }}
+  </div>
+</div>
