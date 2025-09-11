@@ -2,13 +2,12 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './register.html',
-  styleUrls: ['./register.css']
+  styleUrls: ['./register.css'],
 })
 export class RegisterComponent {
   customerName = '';
@@ -18,50 +17,63 @@ export class RegisterComponent {
   userId = '';
   password = '';
   confirmPassword = '';
-  preferences = '';
 
   successMessage = '';
   errorMessage = '';
-  generatedUsername = '';
+  submitted = false;
 
   register() {
-    // Clear previous messages
+    this.submitted = true;
     this.successMessage = '';
     this.errorMessage = '';
 
-    // Basic validation
+    // Validation
     if (!this.customerName || !this.email || !this.mobile || !this.userId || !this.password) {
       this.errorMessage = 'Please fill in all required fields';
       return;
     }
-
+    if (!this.isValidEmail(this.email)) {
+      this.errorMessage = 'Invalid email address';
+      return;
+    }
+    if (!this.isValidMobile(this.mobile)) {
+      this.errorMessage = 'Invalid mobile number';
+      return;
+    }
+    if (this.password.length < 6) {
+      this.errorMessage = 'Password must be at least 6 characters long';
+      return;
+    }
     if (this.password !== this.confirmPassword) {
       this.errorMessage = 'Passwords do not match';
       return;
     }
 
-    if (this.password.length < 6) {
-      this.errorMessage = 'Password must be at least 6 characters long';
+    // Save user to localStorage
+    const userData = {
+      customerName: this.customerName,
+      email: this.email,
+      mobile: this.mobile,
+      address: this.address,
+      userId: this.userId,
+      password: this.password,
+    };
+
+    let users = JSON.parse(localStorage.getItem('users') || '[]');
+    const userExists = users.some((u: any) => u.userId === this.userId);
+
+    if (userExists) {
+      this.errorMessage = 'User ID already exists, please choose another';
       return;
     }
 
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(this.email)) {
-      this.errorMessage = 'Please enter a valid email address';
-      return;
-    }
+    users.push(userData);
+    localStorage.setItem('users', JSON.stringify(users));
 
-    // Mobile validation
-    if (this.mobile.length < 10) {
-      this.errorMessage = 'Please enter a valid mobile number';
-      return;
-    }
+    this.successMessage = 'Registration successful! You can now login.';
+    this.resetForm();
 
-    this.generatedUsername = this.userId + Math.floor(Math.random() * 1000);
-    this.successMessage = `Registration successful! Username: ${this.generatedUsername}`;
-    
-    // Auto clear success message after 5 seconds
+    // Auto clear success message
     setTimeout(() => {
       this.successMessage = '';
     }, 5000);
@@ -75,8 +87,16 @@ export class RegisterComponent {
     this.userId = '';
     this.password = '';
     this.confirmPassword = '';
-    this.preferences = '';
-    this.successMessage = '';
     this.errorMessage = '';
+    this.submitted = false;
+  }
+
+  isValidEmail(email: string): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+  isValidMobile(mobile: string): boolean {
+    return /^[0-9]{10}$/.test(mobile);
   }
 }

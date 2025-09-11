@@ -1,1 +1,75 @@
-<p>invoice works!</p>
+
+<app-navbar-customer></app-navbar-customer>
+
+<div class="page-content invoice-page">
+  <h1>Generate Invoice</h1>
+
+  <div class="search-row">
+    <input
+      type="text"
+      [(ngModel)]="bookingId"
+      name="bookingId"
+      placeholder="Enter Booking ID (e.g. B001)"
+    />
+    <button (click)="generateInvoice()" class="btn">Fetch Invoice</button>
+    <button (click)="clear()" class="btn secondary">Clear</button>
+  </div>
+
+  <div *ngIf="invoice && invoice.notFound" class="not-found">
+    Invoice for Booking ID <strong>{{ invoice.bookingId }}</strong> not found.
+  </div>
+
+  <section *ngIf="invoice && !invoice.notFound" class="invoice-card" id="invoice-card">
+    <header class="invoice-header">
+      <div class="logo">ParcelX</div>
+      <div class="meta">
+        <div><strong>Invoice for Booking:</strong> {{ invoice.bookingId }}</div>
+        <div><strong>Payment Time:</strong> {{ invoice.parcelPaymentTime }}</div>
+      </div>
+    </header>
+
+    <div class="addresses">
+      <div class="box">
+        <h3>Receiver</h3>
+        <p><strong>Name:</strong> {{ invoice.receiverName }}</p>
+        <p><strong>Address:</strong> {{ invoice.receiverAddress }}</p>
+        <p><strong>Pin:</strong> {{ invoice.receiverPin }}</p>
+        <p><strong>Mobile:</strong> {{ invoice.receiverMobile }}</p>
+      </div>
+
+      <div class="box">
+        <h3>Parcel Info</h3>
+        <p><strong>Weight (g):</strong> {{ invoice.parcelWeightGram }}</p>
+        <p><strong>Contents:</strong> {{ invoice.parcelContentsDescription }}</p>
+        <p><strong>Delivery Type:</strong> {{ invoice.parcelDeliveryType }}</p>
+        <p><strong>Packing Preference:</strong> {{ invoice.parcelPackingPreference }}</p>
+      </div>
+    </div>
+
+    <div class="times">
+      <div><strong>Pickup Time:</strong> {{ invoice.parcelPickupTime }}</div>
+      <div><strong>Dropoff Time:</strong> {{ invoice.parcelDropoffTime }}</div>
+    </div>
+
+    <div class="cost-row">
+      <div class="cost-left">
+        <small>Thank you for using ParcelX</small>
+      </div>
+      <div class="cost-right">
+        <div class="line">
+          <span>Service Cost</span>
+          <span class="amount">₹{{ invoice.parcelServiceCost }}</span>
+        </div>
+        <div class="line total">
+          <span>Total</span>
+          <span class="amount">₹{{ invoice.parcelServiceCost }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button (click)="printInvoice()" class="btn">Print Invoice</button>
+    </div>
+  </section>
+</div>
+

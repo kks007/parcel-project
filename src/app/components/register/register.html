@@ -1,36 +1,52 @@
 <div class="form-container">
- 
-
-  <form  (ngSubmit)="register()">
+  <form (ngSubmit)="register()" #registerForm="ngForm">
     <h2>Register</h2>
 
+    <!-- Customer Name -->
     <label>Customer Name:</label>
     <input type="text" [(ngModel)]="customerName" name="customerName" required />
+    <div class="error" *ngIf="!customerName && submitted">
+      Customer Name is required
+    </div>
 
+    <!-- Email -->
     <label>Email:</label>
     <input type="email" [(ngModel)]="email" name="email" required />
+    <div class="error" *ngIf="submitted && !isValidEmail(email)">
+      Please enter a valid email
+    </div>
 
+    <!-- Mobile -->
     <label>Mobile Number:</label>
     <input type="text" [(ngModel)]="mobile" name="mobile" required />
+    <div class="error" *ngIf="submitted && !isValidMobile(mobile)">
+      Please enter a valid 10-digit mobile number
+    </div>
 
+    <!-- Address -->
     <label>Address:</label>
     <textarea [(ngModel)]="address" name="address"></textarea>
 
+    <!-- User ID -->
     <label>User ID:</label>
     <input type="text" [(ngModel)]="userId" name="userId" required />
+    <div class="error" *ngIf="submitted && !userId">
+      User ID is required
+    </div>
 
+    <!-- Password -->
     <label>Password:</label>
     <input type="password" [(ngModel)]="password" name="password" required />
+    <div class="error" *ngIf="submitted && password.length < 6">
+      Password must be at least 6 characters
+    </div>
 
+    <!-- Confirm Password -->
     <label>Confirm Password:</label>
-    <input
-      type="password"
-      [(ngModel)]="confirmPassword"
-      name="confirmPassword"
-      required
-    />
-
-  
+    <input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" required />
+    <div class="error" *ngIf="submitted && password !== confirmPassword">
+      Passwords do not match
+    </div>
 
     <div class="buttons">
       <button class="btn" type="submit">Register</button>
@@ -40,5 +56,8 @@
 
   <div *ngIf="successMessage" class="success">
     {{ successMessage }}
+  </div>
+  <div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
   </div>
 </div>

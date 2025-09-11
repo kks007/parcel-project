@@ -132,4 +132,8 @@ textarea {
 }
 
 
-
+.error{
+  color: red;
+  text-align: center;
+  align-items: center;
+}

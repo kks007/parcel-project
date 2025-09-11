@@ -1,0 +1,135 @@
+.invoice-page {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Search row */
+.search-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 18px 0;
+}
+
+.search-row input {
+  width: 320px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.search-row .btn {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  background: #0078d7;
+  color: white;
+}
+
+.search-row .btn.secondary {
+  background: #f0f0f0;
+  color: #333;
+}
+
+/* Not found */
+.not-found {
+  max-width: 700px;
+  margin: 12px auto;
+  padding: 12px;
+  background: #fff3cd;
+  border: 1px solid #ffeeba;
+  color: #856404;
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* Invoice card */
+.invoice-card {
+  max-width: 900px;
+  margin: 18px auto;
+  padding: 18px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  border: 1px solid #e8eef8;
+}
+
+.invoice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: #0078d7;
+}
+
+.meta { text-align: right; font-size: 0.95rem; color: #333; }
+
+.addresses {
+  display: flex;
+  gap: 18px;
+  margin: 12px 0;
+}
+
+.addresses .box {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  background: #fbfdff;
+  border: 1px solid #eef6ff;
+}
+
+.addresses h3 { margin-top: 0; color: #333; }
+
+.times { display: flex; justify-content: space-between; margin-top: 12px; color: #333; }
+
+.cost-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 18px;
+}
+
+.cost-right {
+  width: 220px;
+  border-radius: 8px;
+  padding: 8px;
+  background: #f6fbff;
+  border: 1px solid #e6f3ff;
+}
+
+.line {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+}
+
+.line.total {
+  font-weight: 700;
+  border-top: 1px dashed #e0eefc;
+  margin-top: 6px;
+  padding-top: 10px;
+}
+
+.amount { color: #0d47a1; }
+
+/* Actions */
+.actions { margin-top: 16px; text-align: right; }
+
+.actions .btn {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: #0078d7;
+  color: white;
+}
+
+/* Print styles */

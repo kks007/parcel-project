@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './guards/auth-guard';
+import { roleGuard } from './guards/role-guard';
 
 // Home + Auth
 import { HomeComponent } from './components/home/home';
@@ -23,22 +25,21 @@ import { PickupDropUpdate } from './components/pickup-drop-update/pickup-drop-up
 export const routes: Routes = [
   // Public
   { path: '', component: HomeComponent },
-  { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
 
-  // Customer routes
-  { path: 'customer-home', component: CustomerHome },
-  { path: 'booking-customer', component: BookingCustomer },
-  { path: 'booking-history-customer', component: BookingHistoryCustomer },
-  { path: 'tracking-customer', component: TrackingCustomer },
-  { path: 'delivery-status', component: DeliveryStatus },
-  { path: 'invoice', component: Invoice },
+  // Customer routes (protected)
+  { path: 'customer-home', component: CustomerHome, canActivate: [authGuard, roleGuard('customer')] },
+  { path: 'booking-customer', component: BookingCustomer, canActivate: [authGuard, roleGuard('customer')] },
+  { path: 'booking-history-customer', component: BookingHistoryCustomer, canActivate: [authGuard, roleGuard('customer')] },
+  { path: 'tracking-customer', component: TrackingCustomer, canActivate: [authGuard, roleGuard('customer')] },
+  { path: 'delivery-status', component: DeliveryStatus, canActivate: [authGuard, roleGuard('customer')] },
+  { path: 'invoice', component: Invoice, canActivate: [authGuard, roleGuard('customer')] },
 
-  // Officer routes
-  { path: 'officer-home', component: OfficerHome },
-  { path: 'booking-officer', component: BookingOfficer },
-  { path: 'booking-history-officer', component: BookingHistoryOfficer },
-  { path: 'tracking-officer', component: TrackingOfficer},
-  { path: 'pickup-drop-update', component: PickupDropUpdate },
+  // Officer/Admin routes (protected)
+  { path: 'officer-home', component: OfficerHome, canActivate: [authGuard, roleGuard('admin')] },
+  { path: 'booking-officer', component: BookingOfficer, canActivate: [authGuard, roleGuard('admin')] },
+  { path: 'booking-history-officer', component: BookingHistoryOfficer, canActivate: [authGuard, roleGuard('admin')] },
+  { path: 'tracking-officer', component: TrackingOfficer, canActivate: [authGuard, roleGuard('admin')] },
+  { path: 'pickup-drop-update', component: PickupDropUpdate, canActivate: [authGuard, roleGuard('admin')] },
 ];

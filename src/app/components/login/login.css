@@ -124,3 +124,9 @@ input, select {
     }
   }
 }
+
+.error{
+  color: red;
+  align-items: center;
+  text-align: center;
+}
