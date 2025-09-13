@@ -1,4 +1,4 @@
-<app-navbar-customer></app-navbar-customer>
+<!-- <app-navbar-customer></app-navbar-customer>
 
 <div class="container">
   <h1>Book a Parcel</h1>
@@ -37,6 +37,155 @@
         <option value="Electronics">Electronics</option>
         <option value="Clothes">Clothes</option>
         <option value="Other">Other</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn">Submit Booking</button>
+    <a routerLink="/customer-home" class="btn secondary">Cancel</a>
+  </form>
+</div> -->
+
+
+<app-navbar-customer></app-navbar-customer>
+
+<div class="container">
+  <h1>Book a Parcel</h1>
+
+  <form (ngSubmit)="submitBooking()" #bookingForm="ngForm">
+    <div class="form-group">
+      <label>Receiver Name</label>
+      <input
+        type="text"
+        [(ngModel)]="bookingFormData.recName"
+        name="recName"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Receiver Address</label>
+      <textarea
+        [(ngModel)]="bookingFormData.recAddress"
+        name="recAddress"
+        required
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Receiver Pin</label>
+      <input
+        type="text"
+        [(ngModel)]="bookingFormData.recPin"
+        name="recPin"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Receiver Mobile</label>
+      <input
+        type="text"
+        [(ngModel)]="bookingFormData.recMobile"
+        name="recMobile"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Parcel Weight (grams)</label>
+      <input
+        type="number"
+        [(ngModel)]="bookingFormData.parWeightGram"
+        name="parWeightGram"
+        required
+        min="0"
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Parcel Contents Description</label>
+      <input
+        type="text"
+        [(ngModel)]="bookingFormData.parContentsDescription"
+        name="parContentsDescription"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Parcel Delivery Type</label>
+      <select
+        [(ngModel)]="bookingFormData.parDeliveryType"
+        name="parDeliveryType"
+        required
+      >
+        <option value="STANDARD">STANDARD</option>
+        <option value="EXPRESS">EXPRESS</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Parcel Packing Preference</label>
+      <select
+        [(ngModel)]="bookingFormData.parPackingPreference"
+        name="parPackingPreference"
+        required
+      >
+        <option value="STANDARD_PACKAGING">STANDARD_PACKAGING</option>
+        <option value="FRAGILE_PACKAGING">FRAGILE_PACKAGING</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Pickup Time</label>
+      <input
+        type="datetime-local"
+        [(ngModel)]="bookingFormData.parPickupTime"
+        name="parPickupTime"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Dropoff Time</label>
+      <input
+        type="datetime-local"
+        [(ngModel)]="bookingFormData.parDropoffTime"
+        name="parDropoffTime"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Service Cost</label>
+      <input
+        type="text"
+        [(ngModel)]="bookingFormData.parServiceCost"
+        name="parServiceCost"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Payment Time</label>
+      <input
+        type="datetime-local"
+        [(ngModel)]="bookingFormData.parPaymentTime"
+        name="parPaymentTime"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Booking Status</label>
+      <select
+        [(ngModel)]="bookingFormData.parStatus"
+        name="parStatus"
+        required
+      >
+        <option value="BOOKED">BOOKED</option>
+        <option value="CANCELLED">CANCELLED</option>
+        <option value="DELIVERED">DELIVERED</option>
       </select>
     </div>
 
