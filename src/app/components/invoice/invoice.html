@@ -15,40 +15,42 @@
     <button (click)="clear()" class="btn secondary">Clear</button>
   </div>
 
-  <div *ngIf="invoice && invoice.notFound" class="not-found">
-    Invoice for Booking ID <strong>{{ invoice.bookingId }}</strong> not found.
-  </div>
+  <!-- Show "not found" message -->
+<div *ngIf="notFound" class="not-found">
+  Invoice for Booking ID <strong>{{ bookingId }}</strong> not found.
+</div>
 
-  <section *ngIf="invoice && !invoice.notFound" class="invoice-card" id="invoice-card">
+
+ <section *ngIf="invoice && !notFound" class="invoice-card" id="invoice-card">
     <header class="invoice-header">
       <div class="logo">ParcelX</div>
       <div class="meta">
         <div><strong>Invoice for Booking:</strong> {{ invoice.bookingId }}</div>
-        <div><strong>Payment Time:</strong> {{ invoice.parcelPaymentTime }}</div>
+        <div><strong>Payment Time:</strong> {{ invoice.parPaymentTime }}</div>
       </div>
     </header>
 
     <div class="addresses">
       <div class="box">
         <h3>Receiver</h3>
-        <p><strong>Name:</strong> {{ invoice.receiverName }}</p>
-        <p><strong>Address:</strong> {{ invoice.receiverAddress }}</p>
-        <p><strong>Pin:</strong> {{ invoice.receiverPin }}</p>
-        <p><strong>Mobile:</strong> {{ invoice.receiverMobile }}</p>
+        <p><strong>Name:</strong> {{ invoice.recName }}</p>
+        <p><strong>Address:</strong> {{ invoice.recAddress }}</p>
+        <p><strong>Pin:</strong> {{ invoice.recPin }}</p>
+        <p><strong>Mobile:</strong> {{ invoice.recMobile }}</p>
       </div>
 
       <div class="box">
         <h3>Parcel Info</h3>
-        <p><strong>Weight (g):</strong> {{ invoice.parcelWeightGram }}</p>
-        <p><strong>Contents:</strong> {{ invoice.parcelContentsDescription }}</p>
-        <p><strong>Delivery Type:</strong> {{ invoice.parcelDeliveryType }}</p>
-        <p><strong>Packing Preference:</strong> {{ invoice.parcelPackingPreference }}</p>
+        <p><strong>Weight (g):</strong> {{ invoice.parWeightGram }}</p>
+        <p><strong>Contents:</strong> {{ invoice.parContentsDescription }}</p>
+        <p><strong>Delivery Type:</strong> {{ invoice.parDeliveryType }}</p>
+        <p><strong>Packing Preference:</strong> {{ invoice.parPackingPreference }}</p>
       </div>
     </div>
 
     <div class="times">
-      <div><strong>Pickup Time:</strong> {{ invoice.parcelPickupTime }}</div>
-      <div><strong>Dropoff Time:</strong> {{ invoice.parcelDropoffTime }}</div>
+      <div><strong>Pickup Time:</strong> {{ invoice.parPickupTime }}</div>
+      <div><strong>Dropoff Time:</strong> {{ invoice.parDropoffTime }}</div>
     </div>
 
     <div class="cost-row">
@@ -58,11 +60,11 @@
       <div class="cost-right">
         <div class="line">
           <span>Service Cost</span>
-          <span class="amount">₹{{ invoice.parcelServiceCost }}</span>
+          <span class="amount">₹{{ invoice.parServiceCost }}</span>
         </div>
         <div class="line total">
           <span>Total</span>
-          <span class="amount">₹{{ invoice.parcelServiceCost }}</span>
+          <span class="amount">₹{{ invoice.parServiceCost }}</span>
         </div>
       </div>
     </div>
