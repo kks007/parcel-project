@@ -1,9 +1,11 @@
+// booking.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-export interface Booking {
-  userId: number;
+export interface Tracking {
+  bookingId: number;
+  userId: string;
   recName: string;
   recAddress: string;
   recPin: string;
@@ -13,21 +15,19 @@ export interface Booking {
   parDeliveryType: string;
   parPackingPreference: string;
   parPickupTime: string;
+  parDropoffTime: string;
   parServiceCost: string;
+  parPaymentTime: string;
+  parStatus: string;
 }
 
-@Injectable({
-  providedIn: 'root'
-})
-export class BookingService {
-  private apiUrl = '/api/bookings';
+@Injectable({ providedIn: 'root' })
+export class TrackingService {
+  private baseUrl = '/api/bookings';
 
   constructor(private http: HttpClient) {}
 
-  createBooking(booking: Booking): Observable<any> {
-    return this.http.post(this.apiUrl, booking);
+  getBookingById(id: string | number): Observable<Tracking> {
+    return this.http.get<Tracking>(`${this.baseUrl}/${id}`);
   }
-  
 }
-
-

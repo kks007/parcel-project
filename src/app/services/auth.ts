@@ -24,7 +24,7 @@ export interface UserProfile {
 })
 export class AuthService {
   private currentUser: UserProfile | null = null;
-  private apiUrl = '/api/auth/login';
+  private apiUrl = '/api/userprofile/login';
 
   constructor(private router: Router, private http: HttpClient) {}
 
