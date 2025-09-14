@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Booking {
-  bookingId?: number;
   userId: number;
   recName: string;
   recAddress: string;
@@ -14,10 +13,7 @@ export interface Booking {
   parDeliveryType: string;
   parPackingPreference: string;
   parPickupTime: string;
-  parDropoffTime: string;
   parServiceCost: string;
-  parPaymentTime: string;
-  parStatus: string;
 }
 
 @Injectable({

@@ -1,38 +1,8 @@
-// import { Component } from '@angular/core';
-// import { FormsModule } from '@angular/forms';
-// import { RouterLink } from '@angular/router';
-// import { NavbarCustomer } from '../../navbar-customer/navbar-customer';
-
-// @Component({
-//   selector: 'app-booking-customer',
-//   standalone: true,
-//   imports: [FormsModule, RouterLink, NavbarCustomer],
-//   templateUrl: './booking-customer.html',
-//   styleUrls: ['./booking-customer.css']
-// })
-// export class BookingCustomer {
-//   booking = {
-//     senderName: '',
-//     receiverName: '',
-//     pickupAddress: '',
-//     dropAddress: '',
-//     parcelWeight: '',
-//     parcelType: 'Document'
-//   };
-
-//   submitBooking() {
-//     console.log('Booking submitted:', this.booking);
-//     alert('Booking request submitted successfully!');
-//   }
-// }
-
-
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { NavbarCustomer } from '../../navbar-customer/navbar-customer';
-import { Booking } from '../../services/booking';
-import { BookingService } from '../../services/booking';
+import { BookingService, Booking } from '../../services/booking';
 
 @Component({
   selector: 'app-booking-customer',
@@ -49,31 +19,32 @@ export class BookingCustomer {
     recMobile: '',
     parWeightGram: 0,
     parContentsDescription: '',
-    parDeliveryType: 'STANDARD', // Match enum exactly
-    parPackingPreference: 'STANDARD_PACKAGING', // Match enum exactly
+    parDeliveryType: 'STANDARD',
+    parPackingPreference: 'STANDARD_PACKAGING',
     parPickupTime: '',
-    parDropoffTime: '',
-    parServiceCost: '',
-    parPaymentTime: '',
-    parStatus: 'BOOKED' // Match enum exactly
+    parServiceCost: ''
   };
 
   constructor(private bookingService: BookingService) {}
 
-  // Helper to ensure date string has seconds for backend parsing
-  private formatDateTime(dateTimeStr: string) : string {
+  private formatDateTime(dateTimeStr: string): string {
     if (!dateTimeStr) return '';
     return dateTimeStr.length === 16 ? dateTimeStr + ':00' : dateTimeStr;
   }
 
   submitBooking() {
-    // Format dates with seconds before sending
     const newBooking: Booking = {
-      userId: 1, // TODO: replace with logged-in user ID dynamically
-      ...this.bookingFormData,
+      userId: 1, // TODO - Replace with dynamic logged-in user ID
+      recName: this.bookingFormData.recName,
+      recAddress: this.bookingFormData.recAddress,
+      recPin: this.bookingFormData.recPin,
+      recMobile: this.bookingFormData.recMobile,
+      parWeightGram: this.bookingFormData.parWeightGram,
+      parContentsDescription: this.bookingFormData.parContentsDescription,
+      parDeliveryType: this.bookingFormData.parDeliveryType,
+      parPackingPreference: this.bookingFormData.parPackingPreference,
       parPickupTime: this.formatDateTime(this.bookingFormData.parPickupTime),
-      parDropoffTime: this.formatDateTime(this.bookingFormData.parDropoffTime),
-      parPaymentTime: this.formatDateTime(this.bookingFormData.parPaymentTime)
+      parServiceCost: this.bookingFormData.parServiceCost
     };
 
     this.bookingService.createBooking(newBooking).subscribe(

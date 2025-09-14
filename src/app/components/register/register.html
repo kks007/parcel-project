@@ -1,51 +1,91 @@
 <div class="form-container">
-  <form (ngSubmit)="register()" #registerForm="ngForm">
+  <form (ngSubmit)="register()" #registerForm="ngForm" novalidate>
     <h2>Register</h2>
 
     <!-- Customer Name -->
-    <label>Customer Name:</label>
-    <input type="text" [(ngModel)]="customerName" name="customerName" required />
+    <label for="customerName">Customer Name:</label>
+    <input
+      id="customerName"
+      type="text"
+      [(ngModel)]="customerName"
+      name="customerName"
+      required
+      [class.invalid]="!customerName && submitted"
+    />
     <div class="error" *ngIf="!customerName && submitted">
       Customer Name is required
     </div>
 
     <!-- Email -->
-    <label>Email:</label>
-    <input type="email" [(ngModel)]="email" name="email" required />
-    <div class="error" *ngIf="submitted && !isValidEmail(email)">
-      Please enter a valid email
-    </div>
+    <label for="email">Email:</label>
+<input
+  id="email"
+  type="email"
+  [(ngModel)]="email"
+  name="email"
+  required
+  [class.invalid]="(submitted && !isValidEmail(email)) || emailExists"
+/>
+<div class="error" *ngIf="submitted && !isValidEmail(email)">
+  Please enter a valid email address
+</div>
+<div class="error" *ngIf="emailExists">
+  Email is already registered. Please try logging in or reset your password.
+</div>
 
     <!-- Mobile -->
-    <label>Mobile Number:</label>
-    <input type="text" [(ngModel)]="mobile" name="mobile" required />
+    <label for="mobile">Mobile Number:</label>
+    <input
+      id="mobile"
+      type="text"
+      [(ngModel)]="mobile"
+      name="mobile"
+      required
+      maxlength="10"
+      minlength="10"
+      pattern="[0-9]{10}"
+      [class.invalid]="submitted && !isValidMobile(mobile)"
+    />
     <div class="error" *ngIf="submitted && !isValidMobile(mobile)">
       Please enter a valid 10-digit mobile number
     </div>
 
     <!-- Address -->
-    <label>Address:</label>
-    <textarea [(ngModel)]="address" name="address"></textarea>
-
-    <!-- User ID -->
-    <label>User ID:</label>
-    <input type="text" [(ngModel)]="userId" name="userId" required />
-    <div class="error" *ngIf="submitted && !userId">
-      User ID is required
-    </div>
+    <label for="address">Address:</label>
+    <textarea id="address" [(ngModel)]="address" name="address" rows="3"></textarea>
 
     <!-- Password -->
-    <label>Password:</label>
-    <input type="password" [(ngModel)]="password" name="password" required />
+    <label for="password">Password:</label>
+    <input
+      id="password"
+      type="password"
+      [(ngModel)]="password"
+      name="password"
+      required
+      minlength="6"
+      [class.invalid]="submitted && password.length < 6"
+    />
     <div class="error" *ngIf="submitted && password.length < 6">
       Password must be at least 6 characters
     </div>
 
     <!-- Confirm Password -->
-    <label>Confirm Password:</label>
-    <input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" required />
+    <label for="confirmPassword">Confirm Password:</label>
+    <input
+      id="confirmPassword"
+      type="password"
+      [(ngModel)]="confirmPassword"
+      name="confirmPassword"
+      required
+      [class.invalid]="submitted && password !== confirmPassword"
+    />
     <div class="error" *ngIf="submitted && password !== confirmPassword">
       Passwords do not match
+    </div>
+
+    <!-- Global form error -->
+    <div *ngIf="errorMessage" class="error form-error">
+      {{ errorMessage }}
     </div>
 
     <div class="buttons">
@@ -56,8 +96,5 @@
 
   <div *ngIf="successMessage" class="success">
     {{ successMessage }}
-  </div>
-  <div *ngIf="errorMessage" class="error">
-    {{ errorMessage }}
   </div>
 </div>
